@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>TEXT TO HTML</title>
+    <style type="text/css">
+    	  #cke_id_body {
+        width: inherit !important;
+        }
+      
+    </style>
+</head>
+
+<body>
+	<div class="container-fluid">
+    	<div class="row">
+    		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+    			<h3>Text Editor:</h3>
+    			<div class="texteditor">
+    				{{form.media}}
+    				{{form.as_p}}
+    			</div>
+    			<input type="submit" class="btn btn-info" value="Text2HTML" onclick="Convert(0)">
+    		</div>
+    	
+    	<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+    		<div class="htmleditor">
+    			<h3>HTML Editor:</h3>
+    			<div class="form-group">
+    				<textarea class="form-control mt-3"  rows="16" id="htmldata">
+    					
+    				</textarea>
+    			  <input type="submit" class="btn btn-info mt-3" value="HTML2Text" onclick="Convert(1)" >
+    			</div>
+
+    		</div>
+    	</div>
+    	</div>
+    </div>
+</body>
+<script type="text/javascript">
+	/*
+	TYPES
+	0:Text to HTML
+	1:HTML to Text
+    */
+	function Convert(type) {
+		if(type == 0){
+           
+			var data = CKEDITOR.instances['id_body'].getData();
+
+			if(data!="")
+			{
+				document.getElementById('htmldata').innerHTML = data;	
+			}
+		    else alert("Empty data!!!");
+		}
+		else if(type == 1){
+
+			var htmlData = document.getElementById('htmldata');
+
+			if (htmlData.value != "")
+			{
+				CKEDITOR.instances['id_body'].setData(htmlData.value);
+			}
+    	
+		}
+		else alert("Unexpected Error!");
+	
+	}
+	
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+</html>
